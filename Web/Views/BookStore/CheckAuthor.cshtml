@@ -1,0 +1,53 @@
+﻿@model Domain.Entities.BookAuthor
+@{
+}
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/lib/bootstrap/dist/css/bootstrap.css">
+    <title>Authors</title>
+</head>
+<body>
+    <h1 class="text-center">Author: @Model.Author.FirstName @Model.Author.LastName</h1>
+
+    <p class="text-center"><b>Email:</b> @Model.Author.Email</p>
+    <p class="text-center"><b>Birthdate:</b> @Model.Author.BirthDate</p>
+
+    <div class="my-container" style="width: 750px;">
+
+        <h3>Books</h3>
+        <table class="table table-dark">
+            <thead>
+                <tr>
+                    <th scope="col">Title</th>
+                    <th scope="col">Year</th>
+                    <th scope="col">ISBN</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var bookAuthor in Model.Author.BookAuthor)
+                {
+                    <tr>
+                        <td>
+                            @bookAuthor.Book.Title
+                        </td>
+                        <td>
+                            @bookAuthor.Book.Year
+                        </td>
+                        <td>
+                            @bookAuthor.Book.ISBN
+                        </td>
+                    </tr>
+                }
+
+            </tbody>
+        </table>
+
+    </div>
+</body>
+
+</html>

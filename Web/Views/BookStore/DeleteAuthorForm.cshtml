@@ -1,0 +1,48 @@
+﻿@model Domain.Entities.Author
+@{
+
+}
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width">
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/lib/bootstrap/dist/css/bootstrap.css">
+    <title>Delete Author</title>
+</head>
+
+<div class="my-container" style="width: 900px;">
+    <h1>You Really Wanna Remove This Author?</h1>
+    <table class="table table-dark">
+        <thead>
+            <tr>
+                <th scope="col">First Name</th>
+                <th scope="col">Last Name</th>
+                <th scope="col">Email</th>
+                <th scope="col">Birthdate</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>
+                    @Model.FirstName
+                </td>
+                <td>
+                    @Model.LastName
+                </td>
+                <td>
+                    @Model.Email
+                </td>
+                <td>
+                    @Model.BirthDate
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <form asp-action="DeleteAuthor" method="post">
+        <input type="hidden" asp-for="Id" />
+        <input type="submit" class="btn btn-danger" value="Delete" />
+        <a class="btn btn-primary" asp-action="Index">Retornar</a>
+    </form>
+</div>

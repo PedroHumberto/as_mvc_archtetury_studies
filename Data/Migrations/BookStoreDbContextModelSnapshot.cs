@@ -18,24 +18,12 @@ namespace Data.Migrations
 #pragma warning disable 612, 618
             modelBuilder
                 .HasAnnotation("ProductVersion", "7.0.4")
+                .HasAnnotation("Proxies:ChangeTracking", false)
+                .HasAnnotation("Proxies:CheckEquality", false)
+                .HasAnnotation("Proxies:LazyLoading", true)
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
-
-            modelBuilder.Entity("AuthorBook", b =>
-                {
-                    b.Property<Guid>("AuthorId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid>("BooksId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.HasKey("AuthorId", "BooksId");
-
-                    b.HasIndex("BooksId");
-
-                    b.ToTable("AuthorBook");
-                });
 
             modelBuilder.Entity("Domain.Entities.Author", b =>
                 {
@@ -85,19 +73,48 @@ namespace Data.Migrations
                     b.ToTable("Books");
                 });
 
-            modelBuilder.Entity("AuthorBook", b =>
+            modelBuilder.Entity("Domain.Entities.BookAuthor", b =>
                 {
-                    b.HasOne("Domain.Entities.Author", null)
-                        .WithMany()
+                    b.Property<Guid>("AuthorId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("BookId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("AuthorId", "BookId");
+
+                    b.HasIndex("BookId");
+
+                    b.ToTable("BookAuthors");
+                });
+
+            modelBuilder.Entity("Domain.Entities.BookAuthor", b =>
+                {
+                    b.HasOne("Domain.Entities.Author", "Author")
+                        .WithMany("BookAuthor")
                         .HasForeignKey("AuthorId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Domain.Entities.Book", null)
-                        .WithMany()
-                        .HasForeignKey("BooksId")
+                    b.HasOne("Domain.Entities.Book", "Book")
+                        .WithMany("BookAuthor")
+                        .HasForeignKey("BookId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("Author");
+
+                    b.Navigation("Book");
+                });
+
+            modelBuilder.Entity("Domain.Entities.Author", b =>
+                {
+                    b.Navigation("BookAuthor");
+                });
+
+            modelBuilder.Entity("Domain.Entities.Book", b =>
+                {
+                    b.Navigation("BookAuthor");
                 });
 #pragma warning restore 612, 618
         }

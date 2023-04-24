@@ -1,0 +1,65 @@
+﻿@model List<Domain.Entities.Book>
+@{
+}
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/lib/bootstrap/dist/css/bootstrap.css">
+    <title>Books</title>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-dark">
+        <div class="collapse navbar-collapse" style="margin-left: 15px;">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" style="color: white; font-weight: bolder;" asp-action="BookForm">
+                        Add Book
+                    </a>
+                </li>
+        </div>
+    </nav>
+    <h1 class="text-center">Welcome to our Book Store</h1>
+
+    <div class="my-container" style="width: 790px;">
+
+        <h3>Book List</h3>
+        <table class="table table-dark">
+            <thead>
+                <tr>
+                    <th scope="col">Title</th>
+                    <th scope="col">Year</th>
+                    <th scope="col">ISBN</th>
+                    <th scope="col">Options</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var book in Model)
+                {
+                    <tr>
+                        <td>
+                            @book.Title
+                        </td>
+                        <td>
+                            @book.Year
+                        </td>
+                        <td>
+                            @book.ISBN
+                        </td>
+                        <td>
+                            <a asp-action="UpdateBook" asp-route-id="@book.Id">Edit</a> |
+                            <a asp-action="DeleteBookForm" asp-route-id="@book.Id">Delete</a> |
+                            <a asp-action="CheckBook" asp-route-id="@book.Id">Check Book</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+
+    </div>
+</body>
+
+</html>

@@ -14,7 +14,7 @@ namespace Data
                 .SetBasePath(Directory.GetCurrentDirectory())
                 .AddJsonFile("appsettings.json")
                 .Build();
-            optionsBuilder.UseSqlServer(configuration.GetConnectionString("BookStoreConnection"));
+            optionsBuilder.UseLazyLoadingProxies().UseSqlServer(configuration.GetConnectionString("BookStoreConnection"));
 
             return new BookStoreDbContext(optionsBuilder.Options);
         }

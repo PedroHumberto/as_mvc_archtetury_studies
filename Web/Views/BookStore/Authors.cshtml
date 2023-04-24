@@ -1,0 +1,66 @@
+﻿@model List<Domain.Entities.Author>
+@{
+}
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/lib/bootstrap/dist/css/bootstrap.css">
+    <title>Authors</title>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-dark">
+        <div class="collapse navbar-collapse" style="margin-left: 15px;">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" style="color: white; font-weight: bolder;" asp-action="AuthorForm">
+                        Add Author
+                    </a>
+                </li>
+        </div>
+    </nav>
+    <h1 class="text-center">Welcome to our Book Store</h1>
+
+    <div class="my-container" style="width: 790px;">
+
+        <h3>Authors List</h3>
+        <table class="table table-dark">
+            <thead>
+                <tr>
+                    <th scope="col">Author Name</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">Birthdate</th>
+                    <th scope="col">Options</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var author in Model)
+                {
+                    <tr>
+                        <td>
+                            @author.FirstName @author.LastName
+                        </td>
+                        <td>
+                            @author.Email
+                        </td>
+                        <td>
+                            @author.BirthDate
+                        </td>
+                        <td>
+                            <a asp-action="UpdateAuthor" asp-route-id="@author.Id">Edit</a> |
+                            <a asp-action="DeleteAuthorForm" asp-route-id="@author.Id">Delete</a> |
+                            <a asp-action="CheckAuthor" asp-route-id="@author.Id">Check Author Books</a>
+                        </td>
+
+                    </tr>
+                }
+            </tbody>
+        </table>
+
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,54 @@
+﻿@model Domain.Entities.Author
+@{
+}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width">
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/lib/bootstrap/dist/css/bootstrap.css">
+    <title>Author Form</title>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-dark">
+        <div class="collapse navbar-collapse" style="margin-left: 15px;">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" style="color: white; font-weight: bolder;" asp-action="Index" asp-controller="Friends">Home</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <div>
+        <h1 class="text-center">Author Formulary</h1>
+    </div>
+    <div class="my-container">
+        <form asp-action="AuthorForm" method="post" class="m-2">
+            <div asp-validation-summary="All"></div>
+            <div class="form-group">
+                <label asp-for="FirstName">First Name:</label>
+                <input asp-for="FirstName" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label asp-for="LastName">Last Name:</label>
+                <input asp-for="LastName" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label asp-for="Email">Email:</label>
+                <input type="email" asp-for="Email" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label asp-for="BirthDate">Birthdate:</label>
+                <input type="date" asp-for="BirthDate" class="form-control" />
+            </div>
+            <button type="submit" class="btn btn-success">Submit</button>
+        </form>
+    </div>
+</body>
+
+</html>
